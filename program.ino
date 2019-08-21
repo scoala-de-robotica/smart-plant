@@ -19,7 +19,7 @@ void loop(void) {
   water_sensor_value = analogRead(A0);
   apa_senzor = digitalRead(D3);
 
-        /*!!!!Senzor de umiditate si temperatura din exterior!!!!*/
+	/*!!!!Senzor de umiditate si temperatura din exterior!!!!*/
   float h = dht.readHumidity();
   float t = dht.readTemperature();
     Serial.print("Exterior Temperature (C) = ");
@@ -27,8 +27,8 @@ void loop(void) {
   Serial.print("Exterior Humidity = ");
   Serial.println(h);
   delay(5000);
-                            /*!!!!//timp de asteptare intre afisarile valorilor//!!!!*/
-                            /*notificare si cu astaa*/
+	/*!!!!//timp de asteptare intre afisarile valorilor//!!!!*/
+	/*notificare si cu astaa*/
 
 
                                       /*!!WATER LEVEL SENSOR!!*/
