@@ -7,10 +7,42 @@ DHT dht(DHTPIN, DHTTYPE);
 void setup() {
   pinMode(relay, OUTPUT);
   dht.begin();
+  pinMode(2, OUTPUT);
   Serial.begin(9600);
+  
   pinMode(water_level, INPUT_PULLUP);
   digitalWrite(water_level, LOW);
 }
+
+
+void blink()
+{
+  digitalWrite(2, HIGH);
+    delay(500);
+    digitalWrite(2, LOW);
+    delay(500);
+    digitalWrite(2, HIGH);
+    delay(500);
+    digitalWrite(2, LOW);
+    delay(500);
+    digitalWrite(2, HIGH);
+    delay(500);
+    digitalWrite(2, LOW);
+    delay(500);
+    digitalWrite(2, HIGH);
+    delay(500);
+    digitalWrite(2, LOW);
+    delay(500);
+    digitalWrite(2, HIGH);
+    delay(500);
+    digitalWrite(2, LOW);
+    delay(500);
+      digitalWrite(2, HIGH);
+    delay(500);
+    digitalWrite(2, LOW);
+    delay(500);
+    
+  }
 
 void loop() {
   int val = 0;
@@ -26,28 +58,20 @@ void loop() {
   Serial.println(h);
   delay(3000);
   
-  // Notificare cand are nevoie de apa/cand are
-  if (digitalRead(water_level) == HIGH) {
-    
-    Serial.println("am apa");
-  }
-  else {
-    
-    Serial.println("Nu am apa");
-    
-  }
-  delay(5000);
+   Serial.print("Moisture Sensor Value:");
   
-// Umiditate sol
-  Serial.print("Moisture Sensor Value:");
   hum = map(analogRead(0), 0, 1024, 0, 100);
   
   Serial.println(100 - hum);
-  
   val = 100 - hum;
 
-    if (val < 20) {
+  delay(500);
+  
+  if (digitalRead(D0) == HIGH) {
+    Serial.println("am apa");
+      if (val < 20) {
     // Planta are nevoie de apa
+    Serial.println("Planta se uda");
     digitalWrite(relay, HIGH);
     delay(1000);
     digitalWrite(relay, LOW);
@@ -66,5 +90,17 @@ void loop() {
     // Solul este suficient de ud
   }
 
+  }
+  
+  else {
+
+    blink();
+    Serial.println("Nu am apa");
+    
+    
+  }
+  
+
+    delay(3000);
 
 }
