@@ -26,8 +26,12 @@ Releu 1 canal 5V HIGH Level.
 ## Pasi de instalare a suportului software
 
 Instalare Arduino IDE: [https://www.arduino.cc/en/Main/Software](https://www.arduino.cc/en/Main/Software). 
+
 Instalare Drivere NodeMCU: [https://www.marginallyclever.com/2017/02/setup-nodemcu-drivers-arduino-ide/](https://www.marginallyclever.com/2017/02/setup-nodemcu-drivers-arduino-ide/). 
+
 Recomandare configurare Arduino IDE pentru comunicare du NodeMCU: [https://www.instructables.com/id/Quick-Start-to-Nodemcu-ESP8266-on-Arduino-IDE/](https://www.instructables.com/id/Quick-Start-to-Nodemcu-ESP8266-on-Arduino-IDE/). 
+
 Librarie recomandata DHT 11: [DHTLib](http://www.circuitbasics.com/wp-content/uploads/2015/10/DHTLib.zip). 
-Turotial punere in functione DHT11: [https://www.instructables.com/id/Interface-DHT11-Humidity-Sensor-Using-NodeMCU/](https://www.instructables.com/id/Interface-DHT11-Humidity-Sensor-Using-NodeMCU/). 
+
+Tutorial punere in functione DHT11: [https://www.instructables.com/id/Interface-DHT11-Humidity-Sensor-Using-NodeMCU/](https://www.instructables.com/id/Interface-DHT11-Humidity-Sensor-Using-NodeMCU/). 
 
