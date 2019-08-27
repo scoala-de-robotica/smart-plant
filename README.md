@@ -14,9 +14,13 @@ Salut! Aici ai toate listate si descrise toate resursele ce au fost folosite in 
 ## Piese si detalii
 
 NodeMCU Lua WIFI ESP8266 CP2102. 
+
 Senzor de nivel al apei. 
+
 Senzor de umiditate a solului (Capacitative moisture soil sensor). 
+
 Senzor de Temperatura și Umiditate DHT11. 
+
 Releu 1 canal 5V HIGH Level. 
 
 ## Schema de conectare
