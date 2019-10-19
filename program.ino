@@ -13,20 +13,15 @@
 DHT dht(DHTPIN, DHTTYPE);
 
 //## Variabile
-int pragUmiditateSol = 60;
-int timpUdarePlanta = 1500;
+int pragUmiditateSol = 40;
+float timpUdarePlanta = 1500;
 
 void setup() {
   //## Setari Senzor umiditate si temperatura
   // Pornire senzorul
   dht.begin();
   //##
-  //## Setari RELEU
-  // Defineste pinul relay ca fiind unul de iesire
-  pinMode(relay, OUTPUT);
-  // pentru ca este un releu activ doar daca simte semnal pe pinul de semnal, atunci aplica tensiune maxima pe pin relay
-  digitalWrite(relay, HIGH);
-  //##
+
 
   //## Setari senzor nivel apa
   //Defineste pin-ul waterLevelSensor ca fiind unul de intrare, de tip PULL UP
@@ -89,7 +84,7 @@ void loop() {
       startPompa(timpUdarePlanta);
       Serial.println("Asteapta 1 minut.");
       // Asteapta 1 minut ca apa sa se propage in sol
-      for (int i = 0; i < 60; i++) {
+      for (int i = 0; i < 180; i++) {
         int umiditateSol = citesteUmiditateSol();
         bool nivelApaInVas = citesteNivelApaInVas();
         float umiditateExterior = citesteUmiditateExterior();
@@ -97,7 +92,7 @@ void loop() {
 
         Serial.print("|Status sistem: ");
         Serial.print("In asteptare ");
-        Serial.print((60000 - (i * 1000)) / 1000);
+        Serial.print((120000 - (i * 1000)) / 1000);
         Serial.print(" secunde");
 
         Serial.print("|Umiditate in sol: ");
@@ -132,14 +127,20 @@ void loop() {
 }
 
 void startPompa(int timp) {
+
+    //## Setari RELEU
+  // Defineste pinul relay ca fiind unul de iesire
+  pinMode(relay, OUTPUT);
+  // pentru ca este un releu activ doar daca simte semnal pe pinul de semnal, atunci aplica tensiune maxima pe pin relay
+
+  //##
+  
   // Pune pompa in functiune
   digitalWrite(relay, LOW);
 
   // Functioneaza cat timp primeste ca parametru
   delay(timp);
-
-  // Opreste pompa din functiune
-  digitalWrite(relay, HIGH);
+  pinMode(relay, INPUT);
 }
 
 int citesteUmiditateSol() {
