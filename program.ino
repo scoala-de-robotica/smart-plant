@@ -38,7 +38,7 @@ void setup() {
   Serial.begin(9600);
   // Setare pin inclus ca pin de iesire
   pinMode(LED_BUILTIN, OUTPUT);
-  digitalWrite(LED_BUILTIN, LOW);
+  digitalWrite(LED_BUILTIN, HIGH);
   //##
 }
 
@@ -65,10 +65,16 @@ void loop() {
   Serial.print(umiditateExterior);
   Serial.print(" %");
 
-
   Serial.print("|Temperatura in exterior: ");
   Serial.print(temperaturaExterior);
-  Serial.println(" °C");
+  Serial.print(" °C");
+
+  Serial.print("|Prag de udare: ");
+  Serial.print(pragUmiditateSol);
+
+  Serial.print("|Timp de udare: ");
+  Serial.print(timpUdarePlanta / 1000);
+  Serial.println(" sec.");
 
   //Daca umiditate din sol este sub pragul acceptat
   if (umiditateSol < pragUmiditateSol) {
@@ -78,14 +84,19 @@ void loop() {
     if (nivelApaInVas) {
       Serial.println("Este prezenta apa in vas. Pornire pompa");
       // Stinge ledul se status de pe NodeMcu
-      digitalWrite(LED_BUILTIN, LOW);
+      digitalWrite(LED_BUILTIN, HIGH);
       //Porneste pompa pentru intervalul de timp de udare
       startPompa(timpUdarePlanta);
       Serial.println("Asteapta 1 minut.");
       // Asteapta 1 minut ca apa sa se propage in sol
       for (int i = 0; i < 60; i++) {
+        int umiditateSol = citesteUmiditateSol();
+        bool nivelApaInVas = citesteNivelApaInVas();
+        float umiditateExterior = citesteUmiditateExterior();
+        float temperaturaExterior = citesteTempExterior();
+
         Serial.print("|Status sistem: ");
-        Serial.print("In asteptare");
+        Serial.print("In asteptare ");
         Serial.print((60000 - (i * 1000)) / 1000);
         Serial.print(" secunde");
 
@@ -113,7 +124,7 @@ void loop() {
     else {
       Serial.println("Nu pot uda planta, pentru ca nu este apa in vas");
       //Altfel porneste ledul de pe NodeMcu in semn de alerta ca in vas nu mai este apa
-      digitalWrite(LED_BUILTIN, HIGH);
+      digitalWrite(LED_BUILTIN, LOW);
     }
   }
   // Reia procesul odata la 5 secunde
