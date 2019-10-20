@@ -92,7 +92,7 @@ void loop() {
 
         Serial.print("|Status sistem: ");
         Serial.print("In asteptare ");
-        Serial.print((120000 - (i * 1000)) / 1000);
+        Serial.print((180000 - (i * 1000)) / 1000);
         Serial.print(" secunde");
 
         Serial.print("|Umiditate in sol: ");
